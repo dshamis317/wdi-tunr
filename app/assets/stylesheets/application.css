@@ -14,5 +14,6 @@
  *= require_self
  *= require base
  *= require layout
-*= require skeleton
+ *= require skeleton
+ *= require font-awesome
  */

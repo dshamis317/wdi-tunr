@@ -1,8 +1,26 @@
-<div class="twelve columns">
-<h1>Tunr</h1>
+<div class="container">
+  <div class="twelve columns offset-by-two" id="search">
 
-<form action="/songs/search" method="get">
-  <input type="text" name="search_term" placeholder="... search for song">
-  <input type="submit">
-</form>
+    <h1>Tunr</h1>
+
+    <h2>Welcome <%= @current_listener.username %>!</h2>
+    <form action="/songs/search" method="get">
+      <input type="text" name="search_term" placeholder="... search for song">
+      <input type="submit">
+    </form>
+  </div>
+
+
+  <% @songs.each do |song| %>
+  <div class="five columns alpha omega">
+    <h3><%= song.title %></h3>
+    <img src="<%= song.artwork_url %>">
+    <audio controls src="<%= song.preview_link %>"></audio>
+    <form action="/songs/<%= song.id %>" method="post">
+      <%= token_tag %>
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit"><i class="fa fa-trash-o"></i></button>
+    </form>
+    <% end %>
+  </div>
 </div>
